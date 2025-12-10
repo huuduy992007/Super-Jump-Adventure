@@ -1,0 +1,302 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.screen.active {
+    display: flex;
+}
+
+h1 {
+    color: #ffcc00;
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+}
+
+h2 {
+    color: #4dabf7;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #ff6b6b;
+    margin: 15px 0 10px;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.btn {
+    background: linear-gradient(to right, #4dabf7, #339af0);
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(77, 171, 247, 0.4);
+    background: linear-gradient(to right, #339af0, #228be6);
+}
+
+.back-btn {
+    background: linear-gradient(to right, #ff6b6b, #fa5252);
+    margin-top: 20px;
+}
+
+.back-btn:hover {
+    background: linear-gradient(to right, #fa5252, #e03131);
+}
+
+.stats {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.stats i {
+    color: #ffcc00;
+    margin-right: 10px;
+}
+
+/* MÀN CHỌN LEVEL */
+.levels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 700px;
+}
+
+.level-btn {
+    background: linear-gradient(135deg, #37b24d, #2b8a3e);
+    color: white;
+    border: none;
+    padding: 25px 15px;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.level-btn:hover:not(.locked) {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(55, 178, 77, 0.4);
+}
+
+.level-btn.locked {
+    background: linear-gradient(135deg, #495057, #343a40);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* CỬA HÀNG */
+.shop-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.shop-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.shop-item:hover:not(.locked) {
+    border-color: #4dabf7;
+    transform: translateY(-10px);
+}
+
+.shop-item.locked {
+    opacity: 0.6;
+    filter: grayscale(50%);
+}
+
+.shop-item h3 {
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #ffd43b;
+    font-size: 1.3rem;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.buy-btn {
+    background: #37b24d;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.buy-btn:hover:not(:disabled) {
+    background: #2b8a3e;
+    transform: scale(1.05);
+}
+
+.buy-btn:disabled {
+    background: #495057;
+    cursor: not-allowed;
+}
+
+/* HƯỚNG DẪN */
+.instructions {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 700px;
+    width: 100%;
+    text-align: left;
+}
+
+.instructions p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    padding-left: 20px;
+}
+
+.instructions i {
+    color: #4dabf7;
+    margin-right: 10px;
+    width: 20px;
+}
+
+/* GAME SCREEN */
+#gameCanvas {
+    background: linear-gradient(to bottom, #87CEEB 0%, #98D8C8 100%);
+    border-radius: 10px;
+    border: 3px solid #4dabf7;
+    display: block;
+    margin: 0 auto;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.game-controls {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+/* MÀN KẾT THÚC */
+.end-stats {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#endTitle {
+    color: #ffcc00;
+    font-size: 3rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+
+    .levels-grid,
+    .shop-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    #gameCanvas {
+        width: 95%;
+        height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .levels-grid,
+    .shop-items {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        padding: 15px 20px;
+        font-size: 1.1rem;
+    }
+}

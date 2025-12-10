@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Jump Adventure</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- MENU CHÍNH -->
+        <div id="mainMenu" class="screen active">
+            <h1><i class="fas fa-gamepad"></i> SUPER JUMP ADVENTURE</h1>
+            <div class="menu-buttons">
+                <button id="playBtn" class="btn"><i class="fas fa-play"></i> CHƠI NGAY</button>
+                <button id="levelsBtn" class="btn"><i class="fas fa-map"></i> CHỌN MÀN</button>
+                <button id="shopBtn" class="btn"><i class="fas fa-shopping-cart"></i> CỬA HÀNG</button>
+                <button id="helpBtn" class="btn"><i class="fas fa-question-circle"></i> HƯỚNG DẪN</button>
+            </div>
+            <div class="stats">
+                <p><i class="fas fa-coins"></i> Xu: <span id="coinCount">0</span></p>
+                <p><i class="fas fa-user"></i> Nhân vật: <span id="currentChar">Leo</span></p>
+            </div>
+        </div>
+
+        <!-- MÀN HÌNH CHỌN MÀN -->
+        <div id="levelsMenu" class="screen">
+            <h2><i class="fas fa-map-marked-alt"></i> CHỌN MÀN</h2>
+            <div class="levels-grid">
+                <button class="level-btn" data-level="1">Màn 1<br><small>Đồng Cỏ</small></button>
+                <button class="level-btn locked" data-level="2">Màn 2<br><small>Hang Động</small></button>
+                <button class="level-btn locked" data-level="3">Màn 3<br><small>Rừng Gió</small></button>
+                <button class="level-btn locked" data-level="4">Màn 4<br><small>Lâu Đài</small></button>
+                <button class="level-btn locked" data-level="5">Màn 5<br><small>Đỉnh Mây</small></button>
+            </div>
+            <button id="backFromLevels" class="btn back-btn"><i class="fas fa-arrow-left"></i> Quay lại</button>
+        </div>
+
+        <!-- CỬA HÀNG -->
+        <div id="shopMenu" class="screen">
+            <h2><i class="fas fa-store"></i> CỬA HÀNG</h2>
+            <div class="shop-items">
+                <div class="shop-item" data-char="ninja">
+                    <h3>Ninja Kai</h3>
+                    <p>Nhảy cao hơn 50%</p>
+                    <p class="price"><i class="fas fa-coins"></i> 500 xu</p>
+                    <button class="buy-btn" data-price="500">MUA</button>
+                </div>
+                <div class="shop-item locked" data-char="knight">
+                    <h3>Kỵ sĩ Luna</h3>
+                    <p>Double Jump (Nhảy 2 lần)</p>
+                    <p class="price"><i class="fas fa-coins"></i> 1200 xu</p>
+                    <button class="buy-btn" data-price="1200">MUA</button>
+                </div>
+                <div class="shop-item locked" data-char="wizard">
+                    <h3>Phù thủy Zibo</h3>
+                    <p>Lượn trong không trung</p>
+                    <p class="price"><i class="fas fa-coins"></i> 2500 xu</p>
+                    <button class="buy-btn" data-price="2500">MUA</button>
+                </div>
+            </div>
+            <button id="backFromShop" class="btn back-btn"><i class="fas fa-arrow-left"></i> Quay lại</button>
+        </div>
+
+        <!-- HƯỚNG DẪN -->
+        <div id="helpMenu" class="screen">
+            <h2><i class="fas fa-info-circle"></i> HƯỚNG DẪN CHƠI</h2>
+            <div class="instructions">
+                <h3><i class="fas fa-keyboard"></i> ĐIỀU KHIỂN:</h3>
+                <p><i class="fas fa-arrow-left"></i> <i class="fas fa-arrow-right"></i> Di chuyển trái/phải</p>
+                <p><i class="fas fa-space-shuttle"></i> Phím CÁCH (SPACE) để nhảy</p>
+
+                <h3><i class="fas fa-bullseye"></i> MỤC TIÊU:</h3>
+                <p><i class="fas fa-flag-checkered"></i> Chạm vào cờ để hoàn thành màn</p>
+                <p><i class="fas fa-coins"></i> Thu thập xu để mua nhân vật mới</p>
+                <p><i class="fas fa-skull-crossbones"></i> Tránh chạm vào gai hoặc rơi xuống hố</p>
+
+                <h3><i class="fas fa-lightbulb"></i> MẸO:</h3>
+                <p>• Mua Ninja Kai đầu tiên để dễ dàng hơn</p>
+                <p>• Kiểm tra kỹ trước khi nhảy</p>
+                <p>• Thu thập xu kim cương để nhanh giàu</p>
+            </div>
+            <button id="backFromHelp" class="btn back-btn"><i class="fas fa-arrow-left"></i> Quay lại</button>
+        </div>
+
+        <!-- GAME CANVAS -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <span>Màn: <span id="currentLevel">1</span></span>
+                <span>Xu: <span id="gameCoins">0</span></span>
+                <span>Nhân vật: <span id="gameChar">Leo</span></span>
+            </div>
+            <canvas id="gameCanvas" width="800" height="500"></canvas>
+            <div class="game-controls">
+                <button id="pauseBtn" class="btn"><i class="fas fa-pause"></i> Tạm dừng</button>
+                <button id="menuBtn" class="btn"><i class="fas fa-home"></i> Menu</button>
+            </div>
+        </div>
+
+        <!-- MÀN HÌNH KẾT THÚC -->
+        <div id="endScreen" class="screen">
+            <h2 id="endTitle">CHÚC MỪNG!</h2>
+            <p id="endMessage">Bạn đã hoàn thành màn chơi!</p>
+            <div class="end-stats">
+                <p>Xu thu được: <span id="endCoins">0</span></p>
+                <p>Tổng xu: <span id="totalCoins">0</span></p>
+            </div>
+            <button id="nextLevelBtn" class="btn"><i class="fas fa-forward"></i> Màn tiếp theo</button>
+            <button id="backToMenuBtn" class="btn"><i class="fas fa-home"></i> Về Menu</button>
+        </div>
+    </div>
+
+    <!-- AUDIO -->
+    <audio id="jumpSound" src="https://assets.mixkit.co/sfx/preview/mixkit-jump-arcade-game-166.mp3"
+        preload="auto"></audio>
+    <audio id="coinSound" src="https://assets.mixkit.co/sfx/preview/mixkit-coin-win-notification-199.mp3"
+        preload="auto"></audio>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
